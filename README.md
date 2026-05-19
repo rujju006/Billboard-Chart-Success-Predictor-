@@ -1,4 +1,4 @@
-# Billboard Hot 100 Hit Prediction
+# Billboard Hot 40 Hit Prediction
 
 The project  predicts whether a song becomes a Billboard Hot 100 “hit” using Spotify audio features, artist metadata, and chart history.
 
@@ -105,8 +105,6 @@ The script `Code/Billboard.R` implements the following stages:
 | Random Forest | — | 1 | — | — | — | — |
 | Gradient Boosting | — | — | 100 | 3 | 0.05 | 10 |
 
-![Hyperparameter tuning results](tuning_results.png)
-
 ### SRQ2 — Train vs. test misclassification
 
 | Model | Train Misclass | Test Misclass |
@@ -120,8 +118,6 @@ The script `Code/Billboard.R` implements the following stages:
 
 **Best test misclassification:** GBM (0.4595), followed closely by LDA (0.4597).
 
-![SRQ2 misclassification summary](train_test_misclass_summarized.png)
-
 ### SRQ3 — Extended model test performance
 
 | Model | Test Accuracy | Test Precision | Test Recall | Test AUC |
@@ -134,8 +130,6 @@ The script `Code/Billboard.R` implements the following stages:
 
 **Best overall:** Random Forest achieves the highest test AUC (0.8016); GBM has the highest test accuracy (0.7112).
 
-![SRQ3 test performance](train_test_performance_srq3.png)
-
 ### SRQ3 — Train vs. test misclassification
 
 | Model | Train Misclass | Test Misclass |
@@ -147,8 +141,6 @@ The script `Code/Billboard.R` implements the following stages:
 | GBM | 0.2662 | 0.2888 |
 
 KNN shows strong overfitting (train 0.0012 vs. test 0.3813). **Random Forest** and **GBM** have the lowest test misclassification (~0.29).
-
-![SRQ3 misclassification rates](train_test_errors_srq3.png)
 
 ### SRQ3 — SHAP feature importance
 
@@ -174,10 +166,6 @@ KNN shows strong overfitting (train 0.0012 vs. test 0.3813). **Random Forest** a
 
 Artist chart history (`artist_avg_peak`, weeks on chart, song count) dominates both models; raw audio features (energy, danceability, speechiness) contribute less.
 
-![Random Forest SHAP importance](shap_importance_plot_srq3_rf.png)
-
-![GBM SHAP importance](shap_importance_plot_srq3_gbm.png)
-
 ### SRQ4 — PCA-based models
 
 | Model | Train Misclass | Test Misclass | Test AUC |
@@ -188,8 +176,6 @@ Artist chart history (`artist_avg_peak`, weeks on chart, song count) dominates b
 | KNN (PCA) | 0.4369 | **0.4724** | 0.5378 |
 
 PCA reduces dimensionality but **test AUC (~0.54)** is much lower than SRQ3 full-feature models (~0.80), suggesting most predictive signal is lost or not captured in the first principal components.
-
-![SRQ4 PCA model results](train_test_misclass_srq4.png)
 
 ### Key takeaways
 
